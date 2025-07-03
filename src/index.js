@@ -17,10 +17,11 @@ function markdownLineEnding (code) {
 }
 
 function wikiLink (opts = {}) {
-  const aliasDivider = opts.aliasDivider || ':'
+  // change default alias divider
+  const aliasDivider = opts.aliasDivider || '|'
 
   const aliasMarker = aliasDivider
-  const startMarker = '[['
+  const startMarker = '![[' // add ![[link|alias]] support
   const endMarker = ']]'
 
   function tokenize (effects, ok, nok) {
@@ -157,7 +158,7 @@ function wikiLink (opts = {}) {
   var call = { tokenize: tokenize }
 
   return {
-    text: { 91: call } // left square bracket
+    text: { 33: call } // the ASCII code of `!`
   }
 }
 
