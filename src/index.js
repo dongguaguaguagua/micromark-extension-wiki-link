@@ -116,7 +116,8 @@ function wikiImgLink(opts = {}) {
         function consumeAlias(code) {
             if (code === endMarker.charCodeAt(endMarkerCursor)) {
                 // if (!alias) return nok(code)
- // 因为需要支持 `![[path|]]`                effects.exit("wikiImgLinkAlias");所以删除
+                // 因为需要支持 `![[path|]]` 所以删除。
+                effects.exit("wikiImgLinkAlias");
                 effects.exit("wikiImgLinkData");
                 effects.enter("wikiImgLinkMarker");
                 return consumeEnd(code);
@@ -261,7 +262,8 @@ function wikiLink(opts = {}) {
 
         function consumeAlias(code) {
             if (code === endMarker.charCodeAt(endMarkerCursor)) {
-                // if (!alias) return nok(code); // 因为需要支持 `![[path|]]` 所以删除
+                // if (!alias) return nok(code);
+                // 因为需要支持 `![[path|]]` 所以删除。
                 effects.exit("wikiLinkAlias");
                 effects.exit("wikiLinkData");
                 effects.enter("wikiLinkMarker");
